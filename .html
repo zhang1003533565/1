@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李怡淳生日快乐！</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #ff4081;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: bounce 2s infinite;
+        }
+        
+        .wishes {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .wish {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #333;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s forwards;
+        }
+        
+        .cake {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 30px auto;
+        }
+        
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            height: 70px;
+            background-color: #f8bbd0;
+            border-radius: 10px 10px 5px 5px;
+        }
+        
+        .cake-middle {
+            position: absolute;
+            bottom: 70px;
+            left: 20px;
+            width: 160px;
+            height: 60px;
+            background-color: #f48fb1;
+            border-radius: 10px 10px 5px 5px;
+        }
+        
+        .cake-top {
+            position: absolute;
+            bottom: 130px;
+            left: 40px;
+            width: 120px;
+            height: 50px;
+            background-color: #f06292;
+            border-radius: 10px 10px 5px 5px;
+        }
+        
+        .candle {
+            position: absolute;
+            bottom: 180px;
+            left: 95px;
+            width: 10px;
+            height: 30px;
+            background-color: #fff59d;
+            border-radius: 2px;
+        }
+        
+        .flame {
+            position: absolute;
+            bottom: 210px;
+            left: 92px;
+            width: 16px;
+            height: 20px;
+            background-color: #ff9800;
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.5s infinite alternate;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            animation: float 5s infinite alternate;
+        }
+        
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 1px;
+            height: 60px;
+            background-color: #888;
+        }
+        
+        .balloon:nth-child(1) {
+            background-color: #ff5252;
+            top: 50px;
+            left: 10%;
+            animation-delay: 0.5s;
+        }
+        
+        .balloon:nth-child(2) {
+            background-color: #448aff;
+            top: 80px;
+            right: 10%;
+            animation-delay: 1s;
+        }
+        
+        .balloon:nth-child(3) {
+            background-color: #66bb6a;
+            top: 30px;
+            left: 30%;
+            animation-delay: 1.5s;
+        }
+        
+        .balloon:nth-child(4) {
+            background-color: #ffeb3b;
+            top: 60px;
+            right: 30%;
+            animation-delay: 2s;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f06292;
+            animation: confetti-fall 5s linear infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes flicker {
+            0% {transform: scale(1); opacity: 0.9;}
+            100% {transform: scale(1.1); opacity: 1;}
+        }
+        
+        @keyframes float {
+            0% {transform: translateY(0);}
+            100% {transform: translateY(-20px);}
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .music-button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .music-button:hover {
+            background-color: #f50057;
+            transform: scale(1.05);
+        }
+        
+        footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        /* 为每个祝福设置不同的动画延迟 */
+        .wish:nth-child(1) { animation-delay: 0.2s; }
+        .wish:nth-child(2) { animation-delay: 0.4s; }
+        .wish:nth-child(3) { animation-delay: 0.6s; }
+        .wish:nth-child(4) { animation-delay: 0.8s; }
+        .wish:nth-child(5) { animation-delay: 1.0s; }
+        .wish:nth-child(6) { animation-delay: 1.2s; }
+        
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .wish {
+                font-size: 1.2rem;
+            }
+            
+            .cake {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    
+    <div class="container">
+        <h1>李怡淳生日快乐！</h1>
+        
+        <div class="cake">
+            <div class="cake-base"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-top"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+        
+        <div class="wishes">
+            <div class="wish">祝你开心每一天！</div>
+            <div class="wish">祝你暴富！财源滚滚！</div>
+            <div class="wish">祝你心想事成！</div>
+            <div class="wish">祝你万事如意！</div>
+            <div class="wish">祝你健康长寿！</div>
+            <div class="wish">祝你前程似锦！</div>
+        </div>
+        
+        <button class="music-button" onclick="playMusic()">播放生日歌</button>
+    </div>
+    
+    <footer>
+        特别为李怡淳定制的生日祝福 ❤️
+    </footer>
+    
+    <script>
+        // 创建彩色纸屑
+        function createConfetti() {
+            const colors = ['#ff5252', '#448aff', '#66bb6a', '#ffeb3b', '#ff4081', '#7c4dff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+        
+        // 播放生日歌
+        function playMusic() {
+            // 使用本地MP3文件
+            const audio = new Audio('birthday_song.mp3');
+            audio.play().catch(error => {
+                // 如果直接播放失败，提供备用方案
+                alert('由于浏览器限制，无法自动播放音乐。请点击确定后手动播放生日歌。');
+                // 创建备用播放方案
+                const backupAudio = document.createElement('audio');
+                backupAudio.controls = true;
+                backupAudio.src = 'birthday_song.mp3'; // 本地MP3文件
+                document.querySelector('.container').appendChild(backupAudio);
+            });
+        }
+        
+        // 页面加载时创建彩色纸屑
+        window.onload = function() {
+            createConfetti();
+            
+            // 自动为每个祝福添加不同颜色
+            const wishes = document.querySelectorAll('.wish');
+            const colors = ['#ff5252', '#448aff', '#66bb6a', '#ff4081', '#7c4dff', '#ff9800'];
+            
+            wishes.forEach((wish, index) => {
+                wish.style.color = colors[index % colors.length];
+            });
+        };
+    </script>
+</body>
+</html>
